@@ -1,0 +1,47 @@
+apply plugin: 'java'
+apply plugin: 'eclipse'
+apply plugin: 'idea'
+
+sourceCompatibility = 1.8
+targetCompatibility = 1.8
+
+repositories {
+	jcenter()
+	
+	maven { url 'https://hub.spigotmc.org/nexus/content/repositories/public/' }
+	maven { url 'https://jitpack.io' }
+}
+
+configurations.all {
+	resolutionStrategy.cacheChangingModulesFor 120, 'seconds'
+}
+
+dependencies {
+	implementation 'org.spigotmc:spigot-api:1.13.2-R0.1-SNAPSHOT'
+
+	testImplementation 'junit:junit:4.12'
+	testImplementation 'com.github.seeseemelk:MockBukkit:v1.13-SNAPSHOT'
+}
+
+jar.doLast() {
+	project.copy {
+		from 'build/libs/DrugPlugin.jar'
+		into './'
+	}
+}
+
+task wrapper(type: Wrapper) {
+	gradleVersion = '4.5'
+}
+
+task deploy(dependsOn: 'jar') {
+	doLast {
+		project.copy() {
+		from 'build/libs/DrugPlugin.jar'
+		into './server/plugins/'
+		}
+	}
+}
+
+eclipse.classpath.downloadJavadoc = true
+eclipse.classpath.downloadSources = true

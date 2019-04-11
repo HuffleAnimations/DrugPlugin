@@ -1,0 +1,9 @@
+/server
+.*
+!.gitignore
+/bin/
+/build/
+/*.jar
+*.iml
+*.ipr
+*.iws

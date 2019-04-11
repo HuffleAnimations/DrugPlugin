@@ -1,0 +1,4 @@
+name: DrugPlugin
+main: be.huffle.drugplugin.DrugPlugin
+version: 0.1.0
+api-version: 1.13
