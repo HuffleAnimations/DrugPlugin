@@ -56,6 +56,7 @@ public class Heroin extends Drug implements Listener
 		melt.setItemMeta(meltMeta);
 		FurnaceRecipe heroin = new FurnaceRecipe(new NamespacedKey(plugin, "heroin"), melt,
 				Material.ROSE_BUSH, 10, 20);
+		heroin.setCookingTime(secondsToTicks(60));
 		Bukkit.addRecipe(heroin);
 	}
 
@@ -92,7 +93,7 @@ public class Heroin extends Drug implements Listener
 			BlockData upperBlockData = Bukkit.createBlockData(blockStringUpperBlock);
 			above.setBlockData(upperBlockData);
 			addLocation(above);
-		}, secondsToTicks(random.nextInt(5) + 15));
+		}, minutesToTicks(random.nextInt(5) + 15));
 		addLocation(block);
 		taskMap.put(block.getLocation(), task);
 	}

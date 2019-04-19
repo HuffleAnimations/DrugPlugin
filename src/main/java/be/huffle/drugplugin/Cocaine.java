@@ -209,7 +209,7 @@ public class Cocaine extends Drug implements Listener
 		if (hasPlayerTakenDrug(player))
 		{
 			player.sendMessage(ChatColor.RED + "" + ChatColor.BOLD + "You can't take cocaine while you're " +
-					"already high");
+					"high");
 		}
 		else
 		{
