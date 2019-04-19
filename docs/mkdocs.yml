@@ -1,0 +1,6 @@
+site_name: Drug Plugin
+theme: readthedocs
+nav:
+- Home: 'index.md'
+- Recipes: 'recipes.md'
+- Effects: 'effects.md'
