@@ -7,5 +7,9 @@ This plugin is just in its starting phase, so it only contains the drugs Cocaine
 In the future there will be more drugs added for sure!
 
 ## Changelog
+
+### v0.1.1 (2019-04-20)
+Fix with drug effects
+
 ### v0.1.0 (2019-04-19)
 Inital release
