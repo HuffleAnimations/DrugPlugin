@@ -20,7 +20,7 @@ public class Drug implements Listener
 	protected final DrugPlugin plugin;
 	private File file;
 	private Set<SerializableLocation> locations = new HashSet<>();
-	private boolean hasPlayerDied = false;
+	private static Set<Player> playersThatHaveDied = new HashSet<>();
 	private static Set<Player> playersThatAreHigh = new HashSet<>();
 
 	public Drug(DrugPlugin plugin, String name)
@@ -84,7 +84,7 @@ public class Drug implements Listener
 	public void playerDied(PlayerDeathEvent event)
 	{
 		Player player = (Player)event.getEntity();
-		hasPlayerDied = true;
+		setHasPlayerDied(true, player);
 	}
 
 	/**
@@ -169,14 +169,22 @@ public class Drug implements Listener
 		return (locations.contains(new SerializableLocation(block)));
 	}
 
-	public boolean hasPlayerDied()
+	public boolean hasPlayerDied(Player player)
 	{
-		return hasPlayerDied;
+
+		return playersThatHaveDied.contains(player);
 	}
 
-	public void setHasPlayerDied(boolean hasPlayerDied)
+	public void setHasPlayerDied(boolean hasPlayerDied, Player player)
 	{
-		this.hasPlayerDied = hasPlayerDied;
+		if (hasPlayerDied)
+		{
+			playersThatHaveDied.add(player);
+		}
+		else
+		{
+			playersThatHaveDied.remove(player);
+		}
 	}
 
 	public boolean hasPlayerTakenDrug(Player player)

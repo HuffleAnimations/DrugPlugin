@@ -215,10 +215,10 @@ public class Cocaine extends Drug implements Listener
 		{
 			event.getItem().setAmount(event.getItem().getAmount() - 1);
 
-			if (!takenCocainePerPlayer.containsKey(player) || hasPlayerDied())
+			if (!takenCocainePerPlayer.containsKey(player) || hasPlayerDied(player))
 			{
 				takenCocainePerPlayer.put(player, 0);
-				setHasPlayerDied(false);
+				setHasPlayerDied(false, player);
 			}
 
 			int takenCocaine = takenCocainePerPlayer.get(player).intValue() + 1;

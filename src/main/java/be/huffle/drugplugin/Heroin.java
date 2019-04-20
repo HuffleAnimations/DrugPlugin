@@ -260,11 +260,11 @@ public class Heroin extends Drug implements Listener
 	 */
 	public void resultWhenPlayerConsumesHeroin(Player player)
 	{
-		if (!takenHeroinPerPlayer.containsKey(player) || hasPlayerDied())
+		if (!takenHeroinPerPlayer.containsKey(player) || hasPlayerDied(player))
 		{
 			takenHeroinPerPlayer.put(player, 0);
-			setHasPlayerDied(false);
-			if (!effectTaskMap.isEmpty() && !teleportTaskMap.isEmpty())
+			setHasPlayerDied(false, player);
+			if (effectTaskMap.containsKey(player) && teleportTaskMap.containsKey(player))
 			{
 				BukkitTask effectTask = effectTaskMap.remove(player);
 				BukkitTask teleportTask = teleportTaskMap.remove(player);
