@@ -36,10 +36,12 @@ public class Heroin extends Drug implements Listener
 	private Map<Player, Integer> takenHeroinPerPlayer = new HashMap<>();
 	private Map<Player, BukkitTask> effectTaskMap = new HashMap<>();
 	private Map<Player, BukkitTask> teleportTaskMap = new HashMap<>();
+	private DrugConfig config;
 
 	public Heroin(DrugPlugin plugin)
 	{
 		super(plugin, "heroin");
+		config = plugin.getDrugConfig();
 
 		// Heroin Seed recipe
 		ItemStack result = new ItemStack(Material.POPPY);
@@ -152,12 +154,12 @@ public class Heroin extends Drug implements Listener
 	}
 
 	/**
-	 * There is a 20% chance to get the Heroin Plant and a 60% cnance to get a Heroin Seed.
+	 * checks the chance of a heroinplant/heroinseed to drop
 	 * @param event
 	 */
 	public void calculateDropChance(BlockBreakEvent event)
 	{
-		if (isChance(0.2))
+		if (isChance(config.getDroprateHeroinPlant()))
 		{
 			ItemStack heroinPlant = new ItemStack(Material.ROSE_BUSH);
 			ItemMeta heroinPlantMeta = heroinPlant.getItemMeta();
@@ -165,7 +167,7 @@ public class Heroin extends Drug implements Listener
 			heroinPlant.setItemMeta(heroinPlantMeta);
 			event.getBlock().getWorld().dropItemNaturally(event.getBlock().getLocation(), heroinPlant);
 		}
-		if (isChance(0.6))
+		if (isChance(config.getDroprateHeroinSeed()))
 		{
 			ItemStack heroinSeed = new ItemStack(Material.POPPY);
 			ItemMeta heroinSeedMeta = heroinSeed.getItemMeta();

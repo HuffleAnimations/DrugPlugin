@@ -12,6 +12,7 @@ public class DrugPlugin extends JavaPlugin implements Listener
 {
 	private Cocaine cocaine;
 	private Heroin heroin;
+	private DrugConfig config;
 
 	public DrugPlugin()
 	{
@@ -26,7 +27,8 @@ public class DrugPlugin extends JavaPlugin implements Listener
 	@Override
 	public void onLoad()
 	{
-
+		this.saveDefaultConfig();
+		config = new DrugConfig(this);
 	}
 	
 	@Override
@@ -44,6 +46,11 @@ public class DrugPlugin extends JavaPlugin implements Listener
 	{
 		cocaine.save();
 		heroin.save();
+	}
+
+	public DrugConfig getDrugConfig()
+	{
+		return config;
 	}
 }
 

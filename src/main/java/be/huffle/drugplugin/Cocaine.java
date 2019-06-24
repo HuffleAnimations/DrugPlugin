@@ -32,10 +32,12 @@ public class Cocaine extends Drug implements Listener
 	private static final String COCAINEPLANT = ChatColor.RESET + "Cocaine Plant" + ChatColor.BLACK;
 	private static final String COCAINE = ChatColor.RESET + "Cocaine" + ChatColor.BLACK;
 	private static final String COCAINEDUST = ChatColor.RESET + "Cocaine Dust" + ChatColor.BLACK;
+	private DrugConfig config;
 
 	public Cocaine(DrugPlugin plugin)
 	{
 		super(plugin, "cocaine");
+		config = plugin.getDrugConfig();
 
 		//Recipe cocaine plant
 		ItemStack result = new ItemStack(Material.SUGAR_CANE);
@@ -86,13 +88,12 @@ public class Cocaine extends Drug implements Listener
 
 	/**
 	 *This method calculates the chance of Cocaine Dust dropping, when a Cocaine Plant is broken.
-	 *The chance of Cocaine Dust dropping is 10%, the chance of the Cocaine Plant dropping is 40%.
 	 *It will also check if the block above the Cocaine plant, is also a Cocaine Plant and will then
 	 *calculate the chance of Cocaine Dust dropping.
 	 */
 	private void checkCocaineDrop(Block block)
 	{
-		if (isChance(0.1))
+		if (isChance(config.getDroprateCocaineDust()))
 		{
 			ItemStack cocaineDust = new ItemStack(Material.SUGAR);
 			ItemMeta cocaineDustMeta = cocaineDust.getItemMeta();
@@ -100,7 +101,7 @@ public class Cocaine extends Drug implements Listener
 			cocaineDust.setItemMeta(cocaineDustMeta);
 			block.getWorld().dropItemNaturally(block.getLocation(), cocaineDust);
 		}
-		if (isChance(0.4))
+		if (isChance(config.getDroprateCocainePlant()))
 		{
 			ItemStack cocainePlant = new ItemStack(Material.SUGAR_CANE);
 			ItemMeta cocainePlantMeta = cocainePlant.getItemMeta();

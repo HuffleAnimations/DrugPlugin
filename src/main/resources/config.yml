@@ -1,0 +1,8 @@
+# Be sure to delete this file and reload the server when a new drug has been added
+# The drop rate will decide how large the chance is of a certain item dropping
+# !! Be sure to make the numbers between 0 and 1 !!
+droprateHeroinPlant: 0.2
+droprateHeroinSeed: 0.6
+
+droprateCocaineDust: 0.1
+droprateCocainePlant: 0.4
